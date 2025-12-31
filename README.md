@@ -1,6 +1,7 @@
 # RxOverlay
 
 A minimal desktop tool to compensate for broken "r" and "x" keys.
+> **Note**: This was just a personal tool I custom made when the "r" and "x" keys on my keyboard stopped working.
 
 ## Features
 

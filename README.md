@@ -60,14 +60,14 @@ If it fails only for elevated apps, run RxOverlay as Administrator (UIPI/integri
 
 ### 2) Dragging polish
 
-1. Drag the overlay by its top bar (drag handle area) for ~10 seconds.
+1. Drag the overlay by the empty background area around the buttons for ~10 seconds.
 2. Drag quickly and slowly.
    - Expected: no flashing, resizing, or visual deformation.
    - Expected: buttons remain clickable and don't accidentally drag.
 
 ### 3) Minimize + restore
 
-1. Click the top-right minimize button.
+1. Click the `–` minimize button (rightmost).
    - Expected: overlay hides and a small restore widget (↑) appears.
 2. Click the restore widget.
    - Expected: overlay reappears and stays topmost if configured.

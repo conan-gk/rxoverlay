@@ -159,3 +159,211 @@ TypeError: int() argument must be a string, a bytes-like object or a real number
 05:10:37 - rxoverlay.winapi - INFO - Keyboard hook stopped
 05:10:37 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
 05:10:37 - rxoverlay.app - INFO - RxOverlay shutdown complete
+06:12:06 - rxoverlay.app - INFO - RxOverlay initialized
+06:12:06 - rxoverlay.app - INFO - Starting RxOverlay...
+06:12:06 - rxoverlay.winapi - INFO - Keyboard hook installed
+06:12:06 - rxoverlay.hotkeys - INFO - Hotkey manager started
+06:12:06 - rxoverlay.app - INFO - RxOverlay running
+06:12:52 - rxoverlay.app - INFO - RxOverlay initialized
+06:12:52 - rxoverlay.app - INFO - Starting RxOverlay...
+06:12:52 - rxoverlay.winapi - INFO - Keyboard hook installed
+06:12:52 - rxoverlay.hotkeys - INFO - Hotkey manager started
+06:12:52 - rxoverlay.app - INFO - RxOverlay running
+06:13:03 - rxoverlay.app - INFO - Overlay minimized
+06:13:04 - rxoverlay.app - INFO - Overlay restored
+06:17:32 - rxoverlay.app - INFO - Overlay minimized
+06:18:14 - rxoverlay.app - INFO - Overlay restored
+02:12:30 - rxoverlay.app - INFO - RxOverlay initialized
+02:12:30 - rxoverlay.app - INFO - Starting RxOverlay...
+02:12:31 - rxoverlay.winapi - INFO - Keyboard hook installed
+02:12:31 - rxoverlay.hotkeys - INFO - Hotkey manager started
+02:12:31 - rxoverlay.app - INFO - RxOverlay running
+02:59:15 - rxoverlay.app - INFO - Shutting down RxOverlay...
+02:59:15 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+02:59:15 - rxoverlay.winapi - INFO - Keyboard hook stopped
+02:59:15 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+02:59:15 - rxoverlay.app - INFO - RxOverlay shutdown complete
+03:01:56 - rxoverlay.app - INFO - RxOverlay initialized
+03:01:56 - rxoverlay.app - INFO - Starting RxOverlay...
+03:01:56 - rxoverlay.winapi - INFO - Keyboard hook installed
+03:01:56 - rxoverlay.hotkeys - INFO - Hotkey manager started
+03:01:56 - rxoverlay.app - INFO - RxOverlay running
+03:19:10 - rxoverlay.app - INFO - Overlay minimized
+03:20:59 - rxoverlay.app - INFO - Overlay restored
+03:30:32 - rxoverlay.app - INFO - Shutting down RxOverlay...
+03:30:32 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+03:30:32 - rxoverlay.winapi - INFO - Keyboard hook stopped
+03:30:32 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+03:30:32 - rxoverlay.app - INFO - RxOverlay shutdown complete
+03:38:14 - rxoverlay.app - INFO - RxOverlay initialized
+03:38:14 - rxoverlay.app - INFO - Starting RxOverlay...
+03:38:15 - rxoverlay.winapi - INFO - Keyboard hook installed
+03:38:15 - rxoverlay.hotkeys - INFO - Hotkey manager started
+03:38:15 - rxoverlay.app - INFO - RxOverlay running
+04:39:40 - rxoverlay.app - INFO - Overlay minimized
+04:40:24 - rxoverlay.app - INFO - Overlay restored
+06:08:10 - rxoverlay.app - INFO - Overlay minimized
+06:12:15 - rxoverlay.app - INFO - Overlay restored
+06:21:15 - rxoverlay.app - INFO - Overlay minimized
+06:21:31 - rxoverlay.app - INFO - Overlay restored
+06:58:53 - rxoverlay.app - INFO - Overlay minimized
+06:58:55 - rxoverlay.app - INFO - Overlay restored
+06:58:56 - rxoverlay.app - INFO - Overlay minimized
+06:58:57 - rxoverlay.app - INFO - Overlay restored
+07:00:17 - rxoverlay.app - INFO - Overlay minimized
+07:02:01 - rxoverlay.app - INFO - Overlay restored
+07:02:30 - rxoverlay.app - INFO - Overlay minimized
+16:38:09 - rxoverlay.app - INFO - Overlay restored
+18:47:51 - rxoverlay.app - INFO - Shutting down RxOverlay...
+18:47:51 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+18:47:51 - rxoverlay.winapi - INFO - Keyboard hook stopped
+18:47:51 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+18:47:51 - rxoverlay.app - INFO - RxOverlay shutdown complete
+02:34:23 - rxoverlay.app - INFO - RxOverlay initialized
+02:34:23 - rxoverlay.app - INFO - Starting RxOverlay...
+02:34:24 - rxoverlay.winapi - INFO - Keyboard hook installed
+02:34:24 - rxoverlay.hotkeys - INFO - Hotkey manager started
+02:34:24 - rxoverlay.app - INFO - RxOverlay running
+02:34:27 - rxoverlay.app - INFO - Overlay minimized
+02:34:27 - rxoverlay.app - INFO - Overlay restored
+06:30:55 - rxoverlay.app - INFO - Overlay minimized
+06:30:56 - rxoverlay.app - INFO - Overlay restored
+06:34:01 - rxoverlay.app - INFO - Shutting down RxOverlay...
+06:34:01 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+06:34:01 - rxoverlay.winapi - INFO - Keyboard hook stopped
+06:34:01 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+06:34:01 - rxoverlay.app - INFO - RxOverlay shutdown complete
+06:43:50 - rxoverlay.app - INFO - RxOverlay initialized
+06:43:50 - rxoverlay.app - INFO - Starting RxOverlay...
+06:43:50 - rxoverlay.winapi - INFO - Keyboard hook installed
+06:43:50 - rxoverlay.hotkeys - INFO - Hotkey manager started
+06:43:50 - rxoverlay.app - INFO - RxOverlay running
+06:44:01 - rxoverlay.app - INFO - Overlay minimized
+06:44:03 - rxoverlay.app - INFO - Overlay restored
+06:46:27 - rxoverlay.app - INFO - Overlay minimized
+06:46:28 - rxoverlay.app - INFO - Overlay restored
+06:49:19 - rxoverlay.app - INFO - Shutting down RxOverlay...
+06:49:19 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+06:49:19 - rxoverlay.winapi - INFO - Keyboard hook stopped
+06:49:19 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+06:49:19 - rxoverlay.app - INFO - RxOverlay shutdown complete
+06:49:23 - rxoverlay.app - INFO - RxOverlay initialized
+06:49:23 - rxoverlay.app - INFO - Starting RxOverlay...
+06:49:23 - rxoverlay.winapi - INFO - Keyboard hook installed
+06:49:23 - rxoverlay.hotkeys - INFO - Hotkey manager started
+06:49:23 - rxoverlay.app - INFO - RxOverlay running
+06:49:28 - rxoverlay.app - INFO - Overlay minimized
+06:49:29 - rxoverlay.app - INFO - Overlay restored
+06:50:53 - rxoverlay.app - INFO - Shutting down RxOverlay...
+06:50:53 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+06:50:53 - rxoverlay.winapi - INFO - Keyboard hook stopped
+06:50:53 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+06:50:53 - rxoverlay.app - INFO - RxOverlay shutdown complete
+06:52:56 - rxoverlay.app - INFO - RxOverlay initialized
+06:52:56 - rxoverlay.app - INFO - Starting RxOverlay...
+06:52:56 - rxoverlay.winapi - INFO - Keyboard hook installed
+06:52:56 - rxoverlay.hotkeys - INFO - Hotkey manager started
+06:52:56 - rxoverlay.app - INFO - RxOverlay running
+06:53:09 - rxoverlay.app - INFO - Overlay minimized
+06:53:09 - rxoverlay.app - INFO - Overlay restored
+06:55:41 - rxoverlay.app - INFO - Shutting down RxOverlay...
+06:55:41 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+06:55:41 - rxoverlay.winapi - INFO - Keyboard hook stopped
+06:55:41 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+06:55:41 - rxoverlay.app - INFO - RxOverlay shutdown complete
+06:55:43 - rxoverlay.app - INFO - RxOverlay initialized
+06:55:43 - rxoverlay.app - INFO - Starting RxOverlay...
+06:55:43 - rxoverlay.winapi - INFO - Keyboard hook installed
+06:55:43 - rxoverlay.hotkeys - INFO - Hotkey manager started
+06:55:43 - rxoverlay.app - INFO - RxOverlay running
+06:55:46 - rxoverlay.app - INFO - Overlay minimized
+06:55:47 - rxoverlay.app - INFO - Overlay restored
+06:59:24 - rxoverlay.app - INFO - Overlay minimized
+06:59:25 - rxoverlay.app - INFO - Overlay restored
+07:02:18 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:02:18 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:02:18 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:02:18 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:02:19 - rxoverlay.app - INFO - RxOverlay shutdown complete
+07:02:20 - rxoverlay.app - INFO - RxOverlay initialized
+07:02:20 - rxoverlay.app - INFO - Starting RxOverlay...
+07:02:20 - rxoverlay.winapi - INFO - Keyboard hook installed
+07:02:20 - rxoverlay.hotkeys - INFO - Hotkey manager started
+07:02:20 - rxoverlay.app - INFO - RxOverlay running
+07:02:33 - rxoverlay.app - INFO - Overlay minimized
+07:02:34 - rxoverlay.app - INFO - Overlay restored
+07:05:42 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:05:42 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:05:42 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:05:42 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:05:42 - rxoverlay.app - INFO - RxOverlay shutdown complete
+07:05:54 - rxoverlay.app - INFO - RxOverlay initialized
+07:05:54 - rxoverlay.app - INFO - Starting RxOverlay...
+07:05:54 - rxoverlay.winapi - INFO - Keyboard hook installed
+07:05:54 - rxoverlay.hotkeys - INFO - Hotkey manager started
+07:05:54 - rxoverlay.app - INFO - RxOverlay running
+07:07:20 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:07:20 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:07:20 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:07:20 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:07:20 - rxoverlay.app - INFO - RxOverlay shutdown complete
+07:07:25 - rxoverlay.app - INFO - RxOverlay initialized
+07:07:25 - rxoverlay.app - INFO - Starting RxOverlay...
+07:07:25 - rxoverlay.winapi - INFO - Keyboard hook installed
+07:07:25 - rxoverlay.hotkeys - INFO - Hotkey manager started
+07:07:25 - rxoverlay.app - INFO - RxOverlay running
+07:09:17 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:09:17 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:09:17 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:09:17 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:09:17 - rxoverlay.app - INFO - RxOverlay shutdown complete
+07:09:19 - rxoverlay.app - INFO - RxOverlay initialized
+07:09:19 - rxoverlay.app - INFO - Starting RxOverlay...
+07:09:19 - rxoverlay.winapi - INFO - Keyboard hook installed
+07:09:19 - rxoverlay.hotkeys - INFO - Hotkey manager started
+07:09:19 - rxoverlay.app - INFO - RxOverlay running
+07:09:30 - rxoverlay.app - INFO - Overlay minimized
+07:09:31 - rxoverlay.app - INFO - Overlay restored
+07:10:20 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:10:20 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:10:20 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:10:20 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:10:20 - rxoverlay.app - INFO - RxOverlay shutdown complete
+07:10:36 - rxoverlay.app - INFO - RxOverlay initialized
+07:10:36 - rxoverlay.app - INFO - Starting RxOverlay...
+07:10:36 - rxoverlay.winapi - INFO - Keyboard hook installed
+07:10:36 - rxoverlay.hotkeys - INFO - Hotkey manager started
+07:10:36 - rxoverlay.app - INFO - RxOverlay running
+07:10:41 - rxoverlay.app - INFO - Overlay minimized
+07:10:42 - rxoverlay.app - INFO - Overlay restored
+07:10:57 - rxoverlay.app - INFO - Overlay minimized
+07:10:59 - rxoverlay.app - INFO - Overlay restored
+07:11:05 - rxoverlay.app - INFO - Overlay minimized
+07:11:15 - rxoverlay.app - INFO - Overlay restored
+07:12:30 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:12:30 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:12:30 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:12:30 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:12:30 - rxoverlay.app - INFO - RxOverlay shutdown complete
+07:12:35 - rxoverlay.app - INFO - RxOverlay initialized
+07:12:35 - rxoverlay.app - INFO - Starting RxOverlay...
+07:12:35 - rxoverlay.winapi - INFO - Keyboard hook installed
+07:12:35 - rxoverlay.hotkeys - INFO - Hotkey manager started
+07:12:35 - rxoverlay.app - INFO - RxOverlay running
+07:13:20 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:13:20 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:13:20 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:13:20 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:13:20 - rxoverlay.app - INFO - RxOverlay shutdown complete
+07:13:27 - rxoverlay.app - INFO - RxOverlay initialized
+07:13:27 - rxoverlay.app - INFO - Starting RxOverlay...
+07:13:27 - rxoverlay.winapi - INFO - Keyboard hook installed
+07:13:27 - rxoverlay.hotkeys - INFO - Hotkey manager started
+07:13:27 - rxoverlay.app - INFO - RxOverlay running
+07:13:29 - rxoverlay.app - INFO - Overlay minimized
+07:13:32 - rxoverlay.app - INFO - Overlay restored
+07:13:41 - rxoverlay.app - INFO - Shutting down RxOverlay...
+07:13:41 - rxoverlay.winapi - INFO - Keyboard hook thread exiting
+07:13:41 - rxoverlay.winapi - INFO - Keyboard hook stopped
+07:13:41 - rxoverlay.hotkeys - INFO - Hotkey manager stopped
+07:13:41 - rxoverlay.app - INFO - RxOverlay shutdown complete

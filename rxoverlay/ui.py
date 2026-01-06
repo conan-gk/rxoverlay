@@ -7,7 +7,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from typing import Callable, Optional
 
-from rxoverlay.winapi import begin_system_move, enable_noactivate_window, show_window_noactivate
+from rxoverlay.winapi import begin_system_move, enable_noactivate_window, enable_overlay_chrome, show_window_noactivate
 
 logger = logging.getLogger(__name__)
 
@@ -50,120 +50,179 @@ class OverlayWindow(tk.Tk):
         opacity = float(self.config.get("overlay", {}).get("opacity", 0.9))
         self.wm_attributes("-alpha", opacity)
 
-        self.geometry("140x70+100+100")
+        # Initial position; final size is computed from content to avoid clipping.
+        self.geometry("10x10+100+100")
         self.withdraw()
 
         # Best-effort: keep the overlay non-activating so clicks don't steal focus.
         try:
             self.update_idletasks()
-            enable_noactivate_window(int(self.winfo_id()))
+            hwnd = int(self.winfo_id())
+            enable_noactivate_window(hwnd)
+            enable_overlay_chrome(hwnd, dark=self.config.get("overlay", {}).get("theme", "light") == "dark")
         except Exception:
             logger.exception("Failed to set overlay NOACTIVATE")
 
+    def _size_to_content(self) -> None:
+        self.update_idletasks()
+        req_w = int(self.winfo_reqwidth())
+        req_h = int(self.winfo_reqheight())
+        self.geometry(f"{req_w}x{req_h}+{self.winfo_x()}+{self.winfo_y()}")
+
     def _setup_ui(self) -> None:
         theme = self.config.get("overlay", {}).get("theme", "light")
+        dark = theme == "dark"
 
         style = ttk.Style()
         style.theme_use("clam")
 
-        if theme == "dark":
+        if dark:
+            surface_bg = "#1c1c1e"
+            stroke = "#2c2c2e"
+            button_bg = "#2c2c2e"
+            button_bg_hover = "#3a3a3c"
+            button_bg_pressed = "#242426"
+            fg = "#ffffff"
+            fg_disabled = "#8e8e93"
             style.configure(
                 "Overlay.TButton",
-                font=("Segoe UI", 9),
-                padding=4,
+                font=("Segoe UI Variable Text", 10),
+                padding=(0, 3),
                 relief="flat",
-                background="#2d3748",
-                foreground="#ffffff",
-                borderwidth=1,
+                background=button_bg,
+                foreground=fg,
+                borderwidth=0,
             )
-            style.map("Overlay.TButton", background=[("active", "#4a5568")])
-            self.configure(bg="#2d3748")
+            style.map(
+                "Overlay.TButton",
+                background=[
+                    ("pressed", button_bg_pressed),
+                    ("active", button_bg_hover),
+                    ("disabled", surface_bg),
+                ],
+                foreground=[("disabled", fg_disabled)],
+            )
+            style.configure(
+                "Overlay.Min.TButton",
+                font=("Segoe UI Variable Text", 10),
+                padding=(1, 0),
+                relief="flat",
+                background=surface_bg,
+                foreground=fg,
+                borderwidth=0,
+            )
+            style.map(
+                "Overlay.Min.TButton",
+                background=[
+                    ("pressed", button_bg_pressed),
+                    ("active", button_bg_hover),
+                    ("disabled", surface_bg),
+                ]
+            )
+            self.configure(bg=stroke)
         else:
+            surface_bg = "#f2f2f7"
+            stroke = "#d1d1d6"
+            button_bg = "#ffffff"
+            button_bg_hover = "#f5f5f7"
+            button_bg_pressed = "#e5e5ea"
+            fg = "#1c1c1e"
+            fg_disabled = "#8e8e93"
             style.configure(
                 "Overlay.TButton",
-                font=("Segoe UI", 9),
-                padding=4,
+                font=("Segoe UI Variable Text", 10),
+                padding=(0, 3),
                 relief="flat",
-                background="#f8f9fa",
-                foreground="#333333",
-                borderwidth=1,
+                background=button_bg,
+                foreground=fg,
+                borderwidth=0,
             )
-            style.map("Overlay.TButton", background=[("active", "#e9ecef")])
-            self.configure(bg="#f8f9fa")
+            style.map(
+                "Overlay.TButton",
+                background=[
+                    ("pressed", button_bg_pressed),
+                    ("active", button_bg_hover),
+                    ("disabled", surface_bg),
+                ],
+                foreground=[("disabled", fg_disabled)],
+            )
+            style.configure(
+                "Overlay.Min.TButton",
+                font=("Segoe UI Variable Text", 10),
+                padding=(1, 0),
+                relief="flat",
+                background=surface_bg,
+                foreground=fg,
+                borderwidth=0,
+            )
+            style.map(
+                "Overlay.Min.TButton",
+                background=[
+                    ("pressed", button_bg_pressed),
+                    ("active", button_bg_hover),
+                    ("disabled", surface_bg),
+                ]
+            )
+            self.configure(bg=stroke)
 
-        # Borderless/minimal variant for the minimize button (inherits Overlay.TButton).
-        style.configure("Min.Overlay.TButton", borderwidth=0, relief="flat")
+        style.configure("Overlay.Surface.TFrame", background=surface_bg)
+        style.configure("Overlay.Stroke.TFrame", background=stroke)
 
-        # Layout: small top drag-handle + controls row.
-        container = ttk.Frame(self, padding=(4, 3, 4, 4))
-        container.grid(row=0, column=0, sticky="nsew")
+        # Compact layout: r/x row with a tiny minimize on the right.
+        outer = ttk.Frame(self, style="Overlay.Stroke.TFrame", padding=1)
+        outer.grid(row=0, column=0, sticky="nsew")
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        # Top bar: drag handle (left) + minimize button (right).
-        top_bar = ttk.Frame(container, padding=(0, 0, 0, 2))
-        top_bar.grid(row=0, column=0, sticky="ew")
-        top_bar.grid_columnconfigure(0, weight=1)
+        container = ttk.Frame(outer, style="Overlay.Surface.TFrame", padding=(2, 2))
+        container.grid(row=0, column=0, sticky="nsew")
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
 
-        # Dedicated drag handle (drag bindings ONLY here).
-        drag_handle = ttk.Frame(top_bar, padding=(8, 2))
-        drag_handle.grid(row=0, column=0, sticky="ew")
+        controls = ttk.Frame(container, style="Overlay.Surface.TFrame")
+        controls.grid(row=0, column=0, sticky="sw")
+        controls.grid_columnconfigure(0, weight=0)
+        controls.grid_columnconfigure(1, weight=0)
 
-        # Minimize button: small + top-right.
-        self.btn_min = ttk.Button(
-            top_bar,
-            text="–",
-            width=2,
-            style="Min.Overlay.TButton",
-            command=self._on_minimize_click,
-            takefocus=0,
-        )
-        self.btn_min.grid(row=0, column=1, sticky="e", padx=(6, 0))
-
-        controls = ttk.Frame(container)
-        controls.grid(row=1, column=0, sticky="ew")
+        min_frame = ttk.Frame(container, style="Overlay.Surface.TFrame")
+        min_frame.grid(row=0, column=0, sticky="ne")
 
         self.btn_r = ttk.Button(
             controls,
             text="r",
-            width=3,
             style="Overlay.TButton",
             command=self._on_r_click,
             takefocus=0,
         )
-        self.btn_r.pack(side="left", padx=(0, 2))
+        self.btn_r.grid(row=0, column=0, padx=(0, 6), sticky="ew")
 
         self.btn_x = ttk.Button(
             controls,
             text="x",
-            width=3,
             style="Overlay.TButton",
             command=self._on_x_click,
             takefocus=0,
         )
-        self.btn_x.pack(side="left", padx=2)
+        self.btn_x.grid(row=0, column=1, padx=(6, 0), sticky="ew")
 
-        self.btn_toggle = ttk.Button(
-            controls,
-            text="◷",
-            width=3,
-            style="Overlay.TButton",
-            command=self._on_toggle_click,
+        self.btn_min = ttk.Button(
+            min_frame,
+            text="˅",
+            style="Overlay.Min.TButton",
+            command=self._on_minimize_click,
             takefocus=0,
+            width=1,
         )
-        self.btn_toggle.pack(side="left", padx=(2, 0))
-
-        # Dragging: bind only on non-button surfaces.
-        drag_handle.bind("<ButtonPress-1>", self._on_drag_start, add="+")
-        drag_handle.bind("<B1-Motion>", self._on_drag_motion, add="+")
-        drag_handle.bind("<ButtonRelease-1>", self._on_drag_end, add="+")
+        self.btn_min.pack()
 
         # Dragging: bind across our own widgets so mouse move events remain
         # reliable even when the window is non-activating.
-        for widget in (self, container, top_bar, drag_handle, controls):
+        for widget in (self, outer, container, controls, min_frame):
             widget.bind("<ButtonPress-1>", self._on_drag_start, add="+")
             widget.bind("<B1-Motion>", self._on_drag_motion, add="+")
             widget.bind("<ButtonRelease-1>", self._on_drag_end, add="+")
+
+        self._size_to_content()
 
     def _on_r_click(self) -> None:
         if self.enabled and self.on_r_callback:
@@ -197,7 +256,7 @@ class OverlayWindow(tk.Tk):
 
     def _on_drag_start(self, event) -> None:
         # Do not start a drag gesture on button clicks.
-        if event.widget in (self.btn_r, self.btn_x, self.btn_toggle, self.btn_min):
+        if event.widget in (self.btn_r, self.btn_x, self.btn_min):
             return
 
         # Tk-driven dragging
@@ -205,8 +264,6 @@ class OverlayWindow(tk.Tk):
         self._drag_start_y = int(event.y_root)
         self._drag_window_x = self.winfo_x()
         self._drag_window_y = self.winfo_y()
-
-
 
     def _apply_pending_drag_move(self) -> None:
         self._drag_move_scheduled = False
@@ -258,7 +315,6 @@ class OverlayWindow(tk.Tk):
 
     def set_enabled(self, enabled: bool) -> None:
         self.enabled = enabled
-        self.btn_toggle.configure(text="◶" if enabled else "◷")
 
         state = "normal" if enabled else "disabled"
         self.btn_r.configure(state=state)
@@ -293,7 +349,7 @@ class OverlayWindow(tk.Tk):
             y = self.winfo_y()
             self._restore_win.geometry(f"50x24+{x}+{y}")
 
-            btn = ttk.Button(self._restore_win, text="↑", width=3, command=self._on_restore_click, takefocus=0)
+            btn = ttk.Button(self._restore_win, text="˄", width=3, command=self._on_restore_click, takefocus=0)
             btn.pack(fill="both", expand=True)
 
             # Best-effort: keep the restore widget non-activating.

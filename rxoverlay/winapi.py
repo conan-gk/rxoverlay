@@ -22,6 +22,10 @@ logger = logging.getLogger(__name__)
 
 user32 = ctypes.WinDLL("user32", use_last_error=True)
 kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+try:
+    dwmapi = ctypes.WinDLL("dwmapi", use_last_error=True)
+except Exception:  # pragma: no cover - Windows-only best-effort
+    dwmapi = None
 
 # --- Constants ---
 
@@ -74,6 +78,22 @@ SWP_SHOWWINDOW = 0x0040
 
 HWND_TOPMOST = -1
 HWND_NOTOPMOST = -2
+
+# DWM window attributes (Windows 11+ best-effort)
+DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+DWMWA_WINDOW_CORNER_PREFERENCE = 33
+DWMWA_SYSTEMBACKDROP_TYPE = 38
+
+DWMWCP_DEFAULT = 0
+DWMWCP_DONOTROUND = 1
+DWMWCP_ROUND = 2
+DWMWCP_ROUNDSMALL = 3
+
+DWMSBT_AUTO = 0
+DWMSBT_NONE = 1
+DWMSBT_MAINWINDOW = 2
+DWMSBT_TRANSIENTWINDOW = 3
+DWMSBT_TABBEDWINDOW = 4
 
 # Pointer-sized Win32 types missing from ctypes.wintypes
 ULONG_PTR = ctypes.c_size_t
@@ -227,6 +247,10 @@ user32.GetWindowLongPtrW.restype = LONG_PTR
 user32.SetWindowLongPtrW.argtypes = (wintypes.HWND, ctypes.c_int, LONG_PTR)
 user32.SetWindowLongPtrW.restype = LONG_PTR
 
+if dwmapi is not None:
+    dwmapi.DwmSetWindowAttribute.argtypes = (wintypes.HWND, wintypes.DWORD, wintypes.LPCVOID, wintypes.DWORD)
+    dwmapi.DwmSetWindowAttribute.restype = ctypes.c_long  # HRESULT
+
 
 def get_foreground_window() -> int:
     """Return the current foreground HWND as an int.
@@ -277,6 +301,37 @@ def _get_window_thread_id(hwnd: int) -> int:
 
 # Keep references to subclass WndProcs so they aren't GC'd.
 _subclassed_wndprocs: dict[int, tuple[int, object]] = {}
+
+def _dwm_set_window_attribute(hwnd: int, attribute: int, value: int) -> bool:
+    if dwmapi is None or not is_window(hwnd):
+        return False
+
+    c_value = ctypes.c_int(int(value))
+    hr = int(
+        dwmapi.DwmSetWindowAttribute(
+            wintypes.HWND(hwnd),
+            wintypes.DWORD(int(attribute)),
+            ctypes.byref(c_value),
+            wintypes.DWORD(ctypes.sizeof(c_value)),
+        )
+    )
+    return hr == 0
+
+
+def enable_overlay_chrome(hwnd: int, *, dark: bool) -> None:
+    """Best-effort DWM polish: rounded corners + acrylic-like backdrop.
+
+    These attributes are Windows 11+ and should safely no-op on older systems.
+    """
+
+    # Rounded corners + native shadow (when the OS supports it).
+    _dwm_set_window_attribute(hwnd, DWMWA_WINDOW_CORNER_PREFERENCE, DWMWCP_ROUND)
+
+    # Ask for a glassy transient backdrop (acrylic-like).
+    _dwm_set_window_attribute(hwnd, DWMWA_SYSTEMBACKDROP_TYPE, DWMSBT_TRANSIENTWINDOW)
+
+    # Dark-mode hint for DWM effects (best-effort; depends on OS).
+    _dwm_set_window_attribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, 1 if dark else 0)
 
 
 def enable_noactivate_window(hwnd: int) -> bool:
